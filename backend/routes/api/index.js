@@ -12,6 +12,8 @@ const { restoreUser } = require("../../utils/auth.js");
 
   router.use('/session', sessionRouter);
 
+  router.use('/reviews', reviewRouter);
+
   router.use('/spots', spotsRouter)
 
   router.use('/users', usersRouter);
