@@ -1,7 +1,7 @@
 // backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Spot, SpotImage, Review, ReviewImage, Booking } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -71,4 +71,56 @@ const requireAuth = function (req, _res, next) {
     return next(err);
   }
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth };
+  const toAuthorize = async function (req, _res, next) {
+    const { user } = req;
+    const { reviewId, reviewImgId, bookingId, spotImgId, spotId } = req.params;
+let errmsg;
+    if (spotId) {
+        const spot = await Spot.findByPk(spotId);
+        if (!spot || user.id === spot['ownerId']) return next();
+         errmsg = `Spot: Expected ${spot['ownerId']} but got ${user.id}`
+    }
+
+    if (reviewId) {
+        const review = await Review.findByPk(reviewId);
+        if(!review || user.id === review['userId']) return next();
+        errmsg = `Review: Expected ${review['userId']} but got ${user.id}`
+    }
+
+    if (bookingId) {
+        const booking = await Booking.findByPk(bookingId);
+        if(!booking || user.id === booking['userId']) return next();
+        errmsg = `Booking: Expected ${booking['userId']} but got ${user.id}`
+    }
+
+    if(reviewImgId){
+        const reviewImg = await ReviewImage.findByPk(reviewImgId);
+
+        if (!reviewImg) return next();
+
+        const review = await Review.findByPk(reviewImg['reviewId'])
+
+        if(user.id === review['userId']) return next()
+        errmsg = `ReviewImg: Expected ${reviewImg['userId']} but got ${user.id}`
+    }
+    if(spotImgId){
+        const spotImg = await SpotImage.findByPk(spotImgId);
+
+        if (!spotImg) return next();
+
+        const spot = await Spot.findByPk(spotImg['spotId'])
+
+        if(user.id === spot['ownerId']) return next()
+        errmsg = `SpotImg: Expected ${spotImg['userId']} but got ${user.id}`
+    }
+
+    const err = new Error('Forbidden');
+    if (process.env.NODE_ENV !== "production"){
+        err.title = 'Authentication required';
+        err.errors = { message: 'Authentication required', errmsg };
+    }
+    err.status = 403;
+    return next(err);
+};
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, toAuthorize};
