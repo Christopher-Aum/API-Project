@@ -15,6 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       /*
 
       */
+      Review.belongsTo(models.Spot, {
+        foreignKey: 'spotId'
+      }),
+
+      Review.belongsTo(models.User, {
+        foreignKey: 'userId'
+      }),
 
       Review.hasMany(models.ReviewImage, {
         foreignKey: 'reviewId'
@@ -34,8 +41,20 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
+    spotId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isInt: true
+      }
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isInt: true
+      }
+    },
     review: DataTypes.STRING,
     stars: DataTypes.INTEGER
   }, {

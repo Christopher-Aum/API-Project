@@ -51,7 +51,7 @@ module.exports = {
       description: "Located in Cincinnati, right by the imaginary beach, long walks on the beach is a literal daydream!",
       price: 443,
     }, {
-      ownerId: 4,
+      ownerId: 1,
       address: "1243 Some Road",
       city: "Jacksonville",
       state: "Florida",
@@ -62,7 +62,7 @@ module.exports = {
       description: "Located in a comfortable suburb of Jacksonville, this mansion has room for your family, and your family's family!",
       price: 959,
     }, {
-      ownerId: 5,
+      ownerId: 2,
       address: "4231 Some Lane",
       city: "Jacksonville",
       state: "Florida",
@@ -72,6 +72,65 @@ module.exports = {
       name: "Cozy 2/2 Shack",
       description: "Located in the outskirts of Jacksonville, this lovely abode is far from the noise of the city!",
       price: 254,
+    },
+    {
+      ownerId: 2,
+      address: "4213 Some Circle",
+      city: "Tampa",
+      state: "Florida",
+      country: "United States",
+      lat: 29.5524733,
+      lng: -54.8643983,
+      name: "Cozy 2/1 Shack",
+      description: "Located in the heart of Tampa, this lovely abode is at the center of Tampa!",
+      price: 213,
+    },
+    {
+      ownerId: 3,
+      address: "4341 Some Lane",
+      city: "Miami",
+      state: "Florida",
+      country: "United States",
+      lat: 24.5524733,
+      lng: -76.8643983,
+      name: "Comfortable 4/3 Home",
+      description: "Located in the suburbs of Miami, it exists as a happy medium of city life, and the quiet life!",
+      price: 457,
+    },
+    {
+      ownerId: 1,
+      address: "431 Some Road",
+      city: "Jacksonville",
+      state: "Florida",
+      country: "United States",
+      lat: 25.5524733,
+      lng: -75.8643983,
+      name: "Cozy 2/2 Villa",
+      description: "Located in the suburbs of Jacksonville, this lovely abode lives at the comfortable range of city and rural!",
+      price: 356,
+    },
+    {
+      ownerId: 3,
+      address: "231 Some Lane",
+      city: "Jacksonville",
+      state: "Florida",
+      country: "United States",
+      lat: 26.5524733,
+      lng: -74.8643983,
+      name: "Cozy 4/2 Home",
+      description: "Located in the outskirts of Jacksonville, this lovely home sits away from the noisy bustle of the city!",
+      price: 258,
+    },{
+      ownerId: 3,
+      address: "4214 Some Lane",
+      city: "Tampa",
+      state: "Florida",
+      country: "United States",
+      lat: 25.5524733,
+      lng: -77.8643983,
+      name: "Cozy 2/2 Shack",
+      description: "Located in the outskirts of Tampa, this lovely shack has a lovely beach to greet you everytime you come home!",
+      price: 244,
     },
    ])
   },
@@ -83,6 +142,10 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-
+    options.tableName = 'Spots';
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(options, {
+      lat: {[Op.in]: [28.5584733, 54.5545733, 65.5541733, 25.5814733, 29.5524733]}
+    })
   }
 };

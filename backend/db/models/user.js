@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       // User.hasMany(models.Review, {
       //   foreignKey: 'userId'
       // })
+      User.hasMany(models.Booking, {
+        foreignKey: 'userId'
+      }),
 
       User.belongsToMany(models.Spot, {
         through: models.Review,
@@ -23,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Spot, {
         foreignKey: 'ownerId'
+      }),
+
+      User.hasMany(models.Review, {
+        foreignKey: 'userId'
       })
     }
   };
@@ -57,6 +64,11 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
+      }, firstName: {
+        type: DataTypes.STRING
+      },
+      lastName: {
+        type: DataTypes.STRING
       }
     }, {
       sequelize,

@@ -11,37 +11,108 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.hasMany(models.Booking, {
-        foreignKey: 'spotId'
+      Spot.belongsTo(models.User, {
+        foreignKey: 'ownerId'
+      })
+
+      Spot.belongsToMany(models.User, {
+        through: models.Booking,
+        foreignKey: 'spotId',
+        otherKey: 'userId'
       }),
+
+      Spot.belongsToMany(models.User, {
+        through: models.Review,
+        foreignKey: 'spotId',
+        otherKey: 'userId'
+      })
+
+      Spot.hasMany(models.SpotImage, {
+        foreignKey: 'spotId',
+      }),
+
       Spot.hasMany(models.Review, {
         foreignKey: 'spotId'
       }),
-      Spot.hasMany(models.SpotImage, {
+
+      Spot.hasMany(models.Booking, {
         foreignKey: 'spotId'
-      }),
-      Spot.belongsTo(models.User, {
-        foreignKey: 'ownerId'
       })
     }
   }
   Spot.init({
     id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true
     },
-    ownerId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
-    lat: DataTypes.DECIMAL,
-    lng: DataTypes.DECIMAL,
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    price: DataTypes.DECIMAL
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isInt: true
+      }
+    },
+    address: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Street address is required' }
+      }
+    },
+    city: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'City is required'}
+      }
+    },
+    state: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'State is required'}
+      }
+    },
+    country: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Country is required'}
+      }
+    },
+    lat: {
+      type: DataTypes.DECIMAL,
+      validate: {
+        isDecimal: true,
+        max: {args: 90, msg: 'Latitude must be between -90 and 90'},
+        min: {args: -90, msg: 'Latitude must be between -90 and 90'}
+      }
+    },
+    lng: {
+      type: DataTypes.DECIMAL,
+      validate: {
+        isDecimal: true,
+        max: { args: 180, msg: 'Longitude must be between -180 and 180'},
+        min: { args: -180, msg: 'Longitude must be between -180 and 180'}
+      }
+    },
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {args: [3, 50], msg: 'Name must be less than 50 characters'}
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: "Description is required"}
+      }
+    },
+    price: {
+      type: DataTypes.DECIMAL,
+      validate: {
+        isDecimal: true,
+        min: { args: 1, msg: 'Price per day is required'}
+      }
+    }
   }, {
     sequelize,
     modelName: 'Spot',

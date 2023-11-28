@@ -25,12 +25,12 @@ module.exports = {
         stars: 4
       },{
         spotId: 4,
-        userId: 5,
+        userId: 1,
         review: "So spacious, I almost got lost inside, and it had a beautiful view!",
         stars: 5
       },{
         spotId: 5,
-        userId: 4,
+        userId: 2,
         review: "It was too far to really do anything short in the city, but it has an odd charm to it",
         stars: 3
       }
