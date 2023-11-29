@@ -57,7 +57,7 @@ router.post('/:reviewId/images',[requireAuth, toAuthorize], async (req, res) =>{
     const { url } = req.body;
     const { reviewId } = req.params;
     const review = await Review.findByPk(reviewId);
-    const reviewImages = await ReviewImage.count({where: {reviewId}})
+    const reviewImages = await ReviewImage.count({ where: {reviewId}})
 if (!review) {
         res.status(404).json(
             {
@@ -65,7 +65,7 @@ if (!review) {
           })
     }
     if (reviewImages == 10) {
-        res.status(403).json(
+        return res.status(403).json(
             {
             "message": "Maximum number of images for this resource was reached"
           })

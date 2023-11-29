@@ -278,14 +278,9 @@ router.get('/', handleQueryErrors, async (req, res) => {
 
         avgRating = stars / numOfReviews
 
-
-
-        // if(url) url = url.toJSON()
-
         spot.avgRating = avgRating ? avgRating : `This spot has no ratings`
-        // if(url) spot.previewImage = url.url
 
-        spot.PreviewImage = url ? url.url : `No preview image available`
+        spot.previewImage = url ? url.url : `No preview image available`
 
         updatedSpots.push(spot)
     }
