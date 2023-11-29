@@ -145,7 +145,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      lat: {[Op.in]: [28.5584733, 54.5545733, 65.5541733, 25.5814733, 29.5524733]}
+      lat: {[Op.in]: [28.5584733, 54.5545733, 65.5541733, 25.5814733, 29.5524733, 24.5524733, 26.5524733, 25.5524733]}
     })
   }
 };
