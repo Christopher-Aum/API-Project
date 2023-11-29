@@ -33,7 +33,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
     options.tableName = 'ReviewImages'
