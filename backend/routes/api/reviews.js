@@ -59,7 +59,7 @@ router.post('/:reviewId/images',[requireAuth, toAuthorize], async (req, res) =>{
     const review = await Review.findByPk(reviewId);
     const reviewImages = await ReviewImage.count({ where: {reviewId}})
 if (!review) {
-        res.status(404).json(
+        return res.status(404).json(
             {
             "message": "Review couldn't be found"
           })
@@ -76,7 +76,6 @@ if (user.id !== review['userId']){
             "message": "Forbidden"
           })
     }
-
     const newReviewImage = await ReviewImage.create({reviewId, url})
 res.json({id: newReviewImage.id, url: newReviewImage.url})
 });
