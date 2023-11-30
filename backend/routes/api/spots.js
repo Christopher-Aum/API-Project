@@ -217,12 +217,9 @@ const handleQueryErrors = [
 
 router.get('/', handleQueryErrors, async (req, res) => {
     let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
-
     page = page >= 1 && page <= 10 ? page : 1;
     size = size >= 1 && size <= 20 ? size : 20;
-
     let where = {};
-
     if (parseFloat(minLat)) {
         minLat = parseFloat(minLat)
         where.lat = {...where.lat,
@@ -255,8 +252,6 @@ router.get('/', handleQueryErrors, async (req, res) => {
         where.price = {...where.price,
                         [Op.lte]: maxPrice}
     }
-
-
     let Spots = await Spot.findAll({
             where,
             limit: size,
@@ -265,6 +260,7 @@ router.get('/', handleQueryErrors, async (req, res) => {
     const updatedSpots = []
 
     for (let spot of Spots) {
+        spot = spot.toJSON();
         const stars = await Review.sum('stars', {
             where: { spotId: spot.id}
         })
@@ -281,7 +277,7 @@ router.get('/', handleQueryErrors, async (req, res) => {
         spot.avgRating = avgRating ? avgRating : `This spot has no ratings`
 
         spot.previewImage = url ? url.url : `No preview image available`
-
+        console.log(spot.previewImage)
         updatedSpots.push(spot)
     }
 
