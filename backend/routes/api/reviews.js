@@ -38,7 +38,7 @@ router.get('/current', requireAuth, async (req, res) => {
     const returnReviews = [];
 
     for (let review of Reviews) {
-
+        review = review.toJson()
         const previewImage = await SpotImage.findByPk(review.Spot.id, {
             where: {preview: true},
         })
