@@ -1,7 +1,7 @@
 
 
 const ALL_SPOTS = 'spots/ALL_SPOTS'
-// const ONE_SPOT = 'spots/ONE_SPOT'
+const ONE_SPOT = 'spots/ONE_SPOT'
 // const USER_SPOTS = "spots/USER_SPOTS"
 // const CREATE_SPOT = 'spots/CREATE_SPOT'
 // const ADD_SPOT_IMG= 'spots/ADD_SPOT_IMG'
@@ -15,12 +15,12 @@ const getAllSpots = (spots) => {
     }
 }
 
-// const getSingleSpot = (spot) => {
-//     return {
-//         type: ONE_SPOT,
-//         spot
-//     }
-// }
+const getSingleSpot = (spot) => {
+    return {
+        type: ONE_SPOT,
+        spot
+    }
+}
 
 // const getUserSpots = (spots) => {
 //     return {
@@ -38,6 +38,16 @@ export const thunkAllSpots = (query) => async (dispatch) => {
     }
 }
 
+export const thunkOneSpot = (spotId) => async (dispatch) => {
+    const response = await fetch(`/api/spots/${spotId}`)
+
+    if(response.ok){
+        const result = await response.json()
+        dispatch(getSingleSpot(result))
+        return response
+    }
+}
+
 const currentState = {}
 
 const spotsReducer = (state = currentState, action) => {
@@ -48,6 +58,11 @@ const spotsReducer = (state = currentState, action) => {
             action.spots.forEach(spot => {
                 newState.Spots[spot.id] = spot
             });
+
+            return newState
+        } case ONE_SPOT: {
+            const newState = {...state, Spots: {}}
+            newState.Spots = {...state.Spots, [action.spot.id]: action.spot}
 
             return newState
         }
