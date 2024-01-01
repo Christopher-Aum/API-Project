@@ -1,0 +1,46 @@
+.ReviewForm {
+    display: grid;
+    gap: 10px;
+    width: 500px;
+    padding: 20px 25px 0;
+    text-align: center;
+}
+.FormHeader {
+    margin-bottom: 10px;
+}
+
+.TextArea {
+    resize: none;
+    height: 100px;
+}
+
+.StarRating {
+    display: flex;
+    gap: 10px;
+    margin: 15px auto 5px;
+}
+.PostButton {
+    width: 250px;
+    padding: 10px;
+    margin: 10px auto 0;
+}
+
+.PostButton:hover:enabled {
+    background-color: #F54A52;
+    color: #E4FFDF
+}
+
+.StarRating:hover,
+.PostButton:hover:enabled {
+    cursor: pointer;
+}
+
+.Empty,
+.Stars,
+.FormHeader {
+    color: #E4FFDF;
+}
+
+.Filled {
+    color: #F54A52;
+}

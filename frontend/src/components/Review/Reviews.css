@@ -1,0 +1,114 @@
+.ReviewContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.Name {
+    font-size: 125%;
+}
+
+.PostContainer:hover {
+    cursor: pointer;
+}
+.PostContainer {
+    width: 150px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-top: 2px solid lightgrey;
+    border-left: 2px solid lightgrey;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.PostContainer2 {
+    width: 185px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-top: 2px solid lightgrey;
+    border-left: 2px solid lightgrey;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.PostContainer:active,
+.PostContainer2:active {
+    border-bottom: 2px solid lightgrey;
+    border-right: 2px solid lightgrey;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.PostText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #E4FFDF;
+    width: 150px;
+    height: 30px;
+    color: black;
+}
+
+.PostText2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #E4FFDF;
+    width: 185px;
+    height: 30px;
+    color: black;
+}
+
+.PostText:hover,
+.PostText2:hover {
+    background-color: #F54A52;
+    color: #E4FFDF;
+}
+
+.DeleteButton {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    height: 28px;
+    background-color: #E4FFDF;
+    border-top: 2px solid lightgrey;
+    border-left: 2px solid lightgrey;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    margin-top: 20px;
+}
+
+.DeleteButton:hover {
+    cursor: pointer;
+}
+
+.DeleteButton:active {
+    border-bottom: 2px solid lightgrey;
+    border-right: 2px solid lightgrey;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.DeleteButtonText {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 120px;
+    height: 28px;
+    position: absolute;
+    background-color: #E4FFDF;
+}
+
+.DeleteButtonText:hover {
+    background-color: #F54A52;
+    color: #E4FFDF;
+}

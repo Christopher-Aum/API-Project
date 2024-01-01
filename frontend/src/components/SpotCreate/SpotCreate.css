@@ -1,0 +1,67 @@
+.newSpotForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+    width: 500px;
+}
+.Header {
+    margin-bottom: 25px;
+}
+.SubHeader {
+    color: #E4FFDF;
+    margin-bottom: 10px;
+}
+.SubHeaderDetails {
+    margin-bottom: 30px;
+}
+.break {
+    margin: 50px 0;
+    border-bottom: 1px solid #E4FFDF;
+}
+.TextArea {
+    height: 100px;
+    resize: none;
+}
+.PartOneInputs {
+    margin: 10px 0;
+}
+
+.CityAndState,
+.PriceContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.StateInputContainer {
+    width: 55%;
+}
+.PhotoInput {
+    width: 100%;
+    margin: 10px 0;
+}
+.Comma {
+    display: flex;
+    align-items: flex-end;
+}
+
+.NestedInputContainer,
+.Input,
+.TextContainer,
+.TextArea {
+    width: 100%;
+}
+.Submit {
+    padding: 10px;
+    margin: 0 auto;
+    background-color: #F54A52;
+    color: #E4FFDF;
+}
+.Submit:hover {
+    color: black;
+    background-color: #E4FFDF;
+    cursor: pointer;
+}
+.Errors {
+    color: #F54A52;
+}

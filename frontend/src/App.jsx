@@ -1,41 +1,41 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Navigation from './components/Navigation/Navigation';
+import { useDispatch } from 'react-redux'
+import { Routes, Route } from 'react-router-dom';
 import * as sessionActions from './store/session';
 
-function Layout() {
+import Navigation from './components/Navigation/Navigation';
+import Spots from './components/Spots/Spots'
+import SingleSpot from './components/SingleSpot/SingleSpot';
+import SpotCreate from './components/SpotCreate/SpotCreate';
+import ManageSpots from './components/ManageSpots/ManageSpots';
+import SpotUpdate from './components/SpotUpdate/SpotUpdate';
+
+function App() {
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [Loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
-    });
-  }, [dispatch]);
+      setLoaded(true)
+    })
+  }, [dispatch])
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Outlet />}
-    </>
-  );
-}
-
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-        element: <h1>Welcome!</h1>
-      }
-    ]
-  }
-]);
-
-function App() {
-  return <RouterProvider router={router} />;
+    { Loaded &&
+      <>
+        <Navigation isLoaded={Loaded}/>
+        <Routes>
+          <Route path='/' element={<Spots />} />
+          <Route path='/spots/:spotId' element={<SingleSpot />} />
+          <Route path='/spots/new' element={<SpotCreate />} isUpdate={false} />
+          <Route path='/spots/:spotId/edit' element={<SpotUpdate isUpdate={true}/>} />
+          <Route path='/spots/current' element={<ManageSpots />} />
+          <Route path='*' element={<h1 className='notFound'>404 Page Not Found</h1>} />
+        </Routes></>
+    }
+   </>
+  )
 }
 
 export default App;

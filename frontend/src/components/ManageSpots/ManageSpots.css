@@ -1,0 +1,79 @@
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+.Header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px 5px;
+    width: fit-content;
+    align-self: flex-start;
+}
+
+.NewSpotBtn {
+    width: 70%;
+    padding: 10px;
+    background-color: #E4FDE1;
+}
+
+.NewSpotBtn:hover {
+    color: #E4FDE1;
+    background-color: #F45B69;
+}
+
+.Spots:hover,
+.DeleteBtn:hover,
+.UpdateBtn:hover,
+.NewSpotBtn:hover{
+    cursor: pointer;
+}
+.ButtonsContainer {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.SpotsWrapper:hover {
+    cursor: default;
+}
+
+.UpdateBtn {
+    margin-top: 10px;
+    width: 75px;
+    height: 31px;
+    background-color: #E4FDE1;
+}
+.DeleteBtn {
+    display: flex;
+    align-items: center;
+    width: 75px;
+    height: 28px;
+    background-color: #E4FDE1;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.DeleteBtn:active {
+    border-bottom: 2px solid grey;
+    border-right: 2px solid grey;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.DeleteBtnText {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 75px;
+    height: 28px;
+    position: absolute;
+}

@@ -1,0 +1,76 @@
+.AllSpotsWrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.PreviewImg {
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 250px;
+    max-width: 250px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+h1, p {
+    color: #E4FFDF;
+}
+
+.SpotsWrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, .25fr));
+    justify-content: center;
+    max-width: 100%;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.Spots{
+    width: 250px;
+    margin: 25px auto;
+}
+.Spots:hover {
+    cursor: pointer;
+}
+
+.Details{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Stars {
+    display: flex;
+    align-items: center;
+}
+
+.Price{
+    margin-top: 10px;
+}
+
+.PageButtonWrap {
+    display: flex;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.PageButton {
+    width: 100px;
+    padding: 10px;
+    background-color: #F54A52;
+    color: #E4FFDF;
+    cursor: pointer;
+}
+
+.PageButton:active {
+    background-color: #E4FFDF;
+    color: black;
+}
+
+.PageNumber {
+    display: flex;
+    align-items: center;
+}

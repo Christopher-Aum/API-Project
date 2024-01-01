@@ -1,0 +1,25 @@
+.DeleteForm {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 25px 0;
+    width: 500px;
+    gap: 15px;
+}
+.Header,
+.SubHeader {
+    color: #E4FFDF;
+    text-align: center;
+}
+
+.YesDelete {
+    background-color: #F54A52;
+}
+
+.YesDelete,
+.NoDelete {
+    padding: 10px;
+}
+.YesDelete:hover,
+.NoDelete:hover {
+    cursor: pointer;
+}
